@@ -7,6 +7,55 @@
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
+
+            <VerticalStackLayout.Resources>
+                <ControlTemplate x:Key="RadioButtonTemplate">
+                    <Border Stroke="Transparent" BackgroundColor="Transparent">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroupList>
+                                <VisualStateGroup x:Name="CheckedStates">
+                                    <VisualState x:Name="Checked">
+                                        <VisualState.Setters>
+                                            <Setter TargetName="check" Property="Opacity" Value="1" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Unchecked">
+                                        <VisualState.Setters>
+                                            <Setter TargetName="check" Property="Opacity" Value="0" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateGroupList>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid WidthRequest="20" HeightRequest="20" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center">
+                                <Ellipse x:Name="border_circle" StrokeThickness="2" Stroke="DarkBlue" Fill="White" WidthRequest="20" HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Center" />
+                                <Ellipse x:Name="check" Fill="DarkBlue" WidthRequest="10" HeightRequest="10" HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Grid>
+                            <ContentPresenter Margin="10,0,0,0" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+
+                <!-- Style for all the Radio Button -->
+                <Style TargetType="RadioButton">
+                    <Setter Property="ControlTemplate" Value="{StaticResource RadioButtonTemplate}" />
+                </Style>
+
+            </VerticalStackLayout.Resources>
+
+            <StackLayout>
+                <Label Text="What's your favorite mode of transport?" />
+                <RadioButton Content="Car" />
+                <RadioButton Content="Bike" />
+                <RadioButton Content="Train" />
+                <RadioButton Content="Walking" />
+            </StackLayout>
+
             <Image
                 Source="dotnet_bot.png"
                 HeightRequest="185"
